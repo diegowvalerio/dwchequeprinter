@@ -38,7 +38,7 @@ public class Relatorio{
 		this.response = (HttpServletResponse) this.context.getExternalContext().getResponse();
 	}
 	
-	public void imprimecheque(String nome, double valor, String cidade, String uf){
+	public void imprimecheque(String nome, double valor, String cidade, String uf, String valorextenso){
 		try{
 			String caminho = "";
 			caminho = Faces.getRealPath("/pages/reports/cheque/cheque");
@@ -51,6 +51,7 @@ public class Relatorio{
 					
 			params.put("NOME", nome);
 			params.put("VALOR", valor);
+			params.put("VALOREXTENSO", valorextenso);
 			params.put("CIDADE", cidade);
 			params.put("UF", uf);
 			params.put("USUARIO", usuarioconectado());
