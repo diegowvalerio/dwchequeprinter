@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cheque" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3104f81e-adc7-4cbc-9d54-dfaef23d02ef">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sige"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="net.sf.jasperreports.print.create.bookmarks" value="true"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="UF" class="java.lang.String"/>
+	<parameter name="CIDADE" class="java.lang.String"/>
+	<parameter name="VALOR" class="java.lang.Double"/>
+	<parameter name="NOME" class="java.lang.String"/>
+	<parameter name="USUARIO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM DWBI_LOGIN
+WHERE USUARIO =  $P{USUARIO}]]>
+	</queryString>
+	<field name="idlogin" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="idlogin"/>
+	</field>
+	<field name="usuario" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="usuario"/>
+	</field>
+	<field name="senha" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="senha"/>
+	</field>
+	<field name="ativo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ativo"/>
+	</field>
+	<field name="TIPO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="TIPO"/>
+	</field>
+	<detail>
+		<band height="129" splitType="Stretch">
+			<textField>
+				<reportElement x="40" y="40" width="310" height="20" uuid="c7dffcc1-cd39-4aef-91da-4d57b8f512cb"/>
+				<textFieldExpression><![CDATA[$P{NOME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="487" y="6" width="100" height="20" uuid="f60fb098-8862-4edf-9ee8-e60b3518ba57"/>
+				<textFieldExpression><![CDATA[$P{VALOR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="70" width="197" height="15" uuid="9b3d5f37-8680-497d-9be1-ee02e851bf0f"/>
+				<textFieldExpression><![CDATA[$P{CIDADE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="70" width="100" height="15" uuid="3b83c4a8-8136-4f51-9773-1f4a2c31a866"/>
+				<textFieldExpression><![CDATA[$P{UF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="44" y="81" width="100" height="30" uuid="a61a3827-9c56-4f66-9b0c-7fbf7e86bf32"/>
+				<textElement markup="none"/>
+				<textFieldExpression><![CDATA[$P{USUARIO}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="196" y="99" width="100" height="30" uuid="27859804-b1da-4071-87a4-623f688122f8"/>
+				<textFieldExpression><![CDATA[$F{idlogin}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
