@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.hibernate.exception.ConstraintViolationException;
 
@@ -49,9 +50,10 @@ public class BeanCheque implements Serializable {
 	}
 
 	public void imprimecheque() {
-	
+		String extenso = StringUtils.rightPad(valorPorExtenso(cheque.getValor()), 150, "#");
+		
 		Relatorio report = new Relatorio();
-		report.imprimecheque(cheque.getNome(), cheque.getValor(), cheque.getCidade(), cheque.getUf(), valorPorExtenso(cheque.getValor()));
+		report.imprimecheque(cheque.getNome(), cheque.getValor(), cheque.getCidade(), cheque.getUf(), extenso);
 
 	}
 	

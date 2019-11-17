@@ -68,7 +68,7 @@ WHERE USUARIO =  $P{USUARIO}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{UF}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="30" y="34" width="450" height="10" uuid="0206a1ed-4756-4373-b06c-3b110df4b76d"/>
 				<textElement>
 					<font fontName="Arial" size="8"/>
