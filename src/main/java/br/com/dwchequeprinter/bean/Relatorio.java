@@ -5,9 +5,13 @@ import java.io.ByteArrayOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.faces.application.FacesMessage;
@@ -38,7 +42,20 @@ public class Relatorio{
 		this.response = (HttpServletResponse) this.context.getExternalContext().getResponse();
 	}
 	
-	public void imprimecheque(String nome, double valor, String cidade, String uf, String valorextenso){
+	public void imprimecheque(String nome, double valor, String cidade, String uf, String valorextenso, Date data){
+		Locale local = new Locale("pt","BR");
+		DateFormat formato = new SimpleDateFormat("MMMM",local);
+		SimpleDateFormat formato2 = new SimpleDateFormat("dd");
+		SimpleDateFormat formato3 = new SimpleDateFormat("yyyy");
+		
+		DecimalFormat df = new DecimalFormat("#,###.00");
+		String valorformatado = df.format(valor); 
+		
+		
+		String dia = formato2.format(data);
+		String mes = formato.format(data);
+		String ano = formato3.format(data);
+		
 		try{
 			String caminho = "";
 			caminho = Faces.getRealPath("/pages/reports/cheque/cheque");
@@ -50,10 +67,13 @@ public class Relatorio{
 			
 					
 			params.put("NOME", nome);
-			params.put("VALOR", valor);
+			params.put("VALOR", valorformatado);
 			params.put("VALOREXTENSO", valorextenso);
 			params.put("CIDADE", cidade);
 			params.put("UF", uf);
+			params.put("DIA", dia);
+			params.put("MES", mes);
+			params.put("ANO", ano);
 			params.put("USUARIO", usuarioconectado());
 			
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();

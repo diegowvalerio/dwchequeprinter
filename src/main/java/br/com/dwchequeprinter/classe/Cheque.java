@@ -1,6 +1,7 @@
 package br.com.dwchequeprinter.classe;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Cheque implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -9,10 +10,21 @@ public class Cheque implements Serializable {
 	private double valor;
 	private String cidade;
 	private String uf;
+	private Date data;
 	
 		
 	public Cheque() {
 		super();
+	}
+
+
+	public Date getData() {
+		return data;
+	}
+
+
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 

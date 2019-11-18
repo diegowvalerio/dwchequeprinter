@@ -10,10 +10,13 @@
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="mm"/>
 	<parameter name="UF" class="java.lang.String"/>
 	<parameter name="CIDADE" class="java.lang.String"/>
-	<parameter name="VALOR" class="java.lang.Double"/>
+	<parameter name="VALOR" class="java.lang.String"/>
 	<parameter name="NOME" class="java.lang.String"/>
 	<parameter name="USUARIO" class="java.lang.String"/>
 	<parameter name="VALOREXTENSO" class="java.lang.String"/>
+	<parameter name="DIA" class="java.lang.String"/>
+	<parameter name="MES" class="java.lang.String"/>
+	<parameter name="ANO" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT * FROM DWBI_LOGIN
 WHERE USUARIO =  $P{USUARIO}]]>
@@ -34,41 +37,63 @@ WHERE USUARIO =  $P{USUARIO}]]>
 		<property name="com.jaspersoft.studio.field.label" value="TIPO"/>
 	</field>
 	<detail>
-		<band height="129" splitType="Stretch">
+		<band height="146" splitType="Stretch">
 			<textField>
-				<reportElement x="390" y="10" width="100" height="10" uuid="6cffd179-e3e5-4823-87eb-4f6f3197e895"/>
+				<reportElement x="412" y="9" width="70" height="10" uuid="6cffd179-e3e5-4823-87eb-4f6f3197e895"/>
 				<textElement>
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{VALOR}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="30" y="49" width="300" height="10" uuid="03a401dc-96b9-4f24-afcf-baa881555192"/>
+				<reportElement x="16" y="55" width="300" height="10" uuid="03a401dc-96b9-4f24-afcf-baa881555192"/>
 				<textElement>
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{NOME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="214" y="75" width="100" height="10" uuid="234b9720-da94-4eed-b880-af7984e89e7c"/>
-				<textElement>
+				<reportElement x="140" y="70" width="100" height="10" uuid="234b9720-da94-4eed-b880-af7984e89e7c"/>
+				<textElement textAlignment="Right">
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{CIDADE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="320" y="75" width="22" height="10" uuid="980de285-20d9-43f8-8ccf-9317dea20984"/>
+				<reportElement x="260" y="70" width="22" height="10" uuid="980de285-20d9-43f8-8ccf-9317dea20984"/>
 				<textElement>
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{UF}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="30" y="34" width="450" height="10" uuid="0206a1ed-4756-4373-b06c-3b110df4b76d"/>
+				<reportElement x="30" y="32" width="450" height="10" uuid="0206a1ed-4756-4373-b06c-3b110df4b76d"/>
 				<textElement rotation="None">
 					<font fontName="Arial" size="8"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="1.0"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{VALOREXTENSO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="70" width="70" height="10" uuid="1d663de2-ffb4-4f19-99ee-5955ce38b5a1"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{MES}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="70" width="20" height="10" uuid="fc363b14-27a2-46c8-850b-64c330053011"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="436" y="70" width="50" height="10" uuid="8b11e896-83ce-45f1-8e12-b184e670e507"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ANO}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
