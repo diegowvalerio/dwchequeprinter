@@ -27,7 +27,9 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.type.OrientationEnum;
 import net.sf.jasperreports.engine.util.JRLoader;
 
 
@@ -72,12 +74,17 @@ public class Relatorio{
 			params.put("CIDADE", cidade);
 			params.put("UF", uf);
 			params.put("DIA", dia);
-			params.put("MES", mes);
+			params.put("MES", mes.toUpperCase());
 			params.put("ANO", ano);
 			params.put("USUARIO", usuarioconectado());
 			
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			JasperPrint print = JasperFillManager.fillReport(rp, params, getConexao());
+			
+			print.setOrientation(OrientationEnum.LANDSCAPE);
+			print.setPageWidth(496);
+			print.setPageHeight(212);
+			//JasperPrintManager.printPage(print, 0, true); 
 			JasperExportManager.exportReportToPdfStream(print, baos);
 			
 			response.reset();
@@ -93,71 +100,6 @@ public class Relatorio{
 		}catch(Exception e){
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Erro ao gerar o relatorio!"));
 		}
-	}
-	
-	/*clientes*/
-	public void rel_clientes_lista(String situacao,String vendedor,String vendedor1, Date data, Date data1,String nome){
-		try{
-			String caminho = "";
-			caminho = Faces.getRealPath("/pages/reports/cheque/cheque");
-		
-			JasperCompileManager.compileReportToFile(caminho+".jrxml");
-			JasperReport rp = (JasperReport) JRLoader.loadObjectFromFile(caminho+".jasper");
-			
-			Map<String, Object> params = new HashMap<String, Object>();
-			boolean b = false;
-			if (situacao.equals("A")){
-				b = true;
-				params.put("SITUACAO", b);
-				params.put("SITUACAO1", b);
-			}else if (situacao.equals("I")){
-				b = false;
-				params.put("SITUACAO", b);
-				params.put("SITUACAO1", b);
-			}else{
-				boolean b1 = true;
-				params.put("SITUACAO", b);
-				params.put("SITUACAO1", b1);
-			}
-			
-			if(vendedor.equals("")){
-				params.put("VENDEDOR", 0);
-				params.put("VENDEDOR1", 999999999);
-			}else{
-				params.put("VENDEDOR", Integer.parseInt(vendedor));
-				params.put("VENDEDOR1", Integer.parseInt(vendedor1));
-			}
-			
-			if(nome.equals("")){
-				params.put("NOME","%%");
-			}else{
-				params.put("NOME", "%"+nome+"%");
-			}
-			
-			params.put("DATA", data);
-			params.put("DATA1", data1);	
-			
-			
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			JasperPrint print = JasperFillManager.fillReport(rp, params, getConexao());
-						
-			
-			JasperExportManager.exportReportToPdfStream(print, baos);
-			
-			response.reset();
-			response.setContentType("application/pdf");
-			response.setContentLength(baos.size());
-			response.setHeader("Content-disposition","inline; filename=relatorio.pdf");
-			response.getOutputStream().write(baos.toByteArray());
-			response.getOutputStream().flush();
-			response.getOutputStream().close();
-			context.responseComplete();
-			closeConnection();
-			
-		}catch(Exception e){
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Erro ao gerar o relatorio!"));
-		}
-		
 	}
 
 	/*conexao*/

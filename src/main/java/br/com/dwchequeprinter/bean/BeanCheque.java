@@ -51,8 +51,9 @@ public class BeanCheque implements Serializable {
 
 	public void imprimecheque() {
 		String ex =valorPorExtenso(cheque.getValor());
-		int count = 300 - ex.length();
-		String extenso = StringUtils.rightPad(ex, count, " #");
+		//int count = 300 - ex.length();
+		String extenso = String.format ("%25.25s", "")+StringUtils.rightPad(ex, 195, " #");
+		//extenso = String.format ("%20.20s", "")+extenso;
 		
 		Relatorio report = new Relatorio();
 		report.imprimecheque(cheque.getNome().toUpperCase(), cheque.getValor(), cheque.getCidade().toUpperCase(), cheque.getUf().toUpperCase(), extenso.toUpperCase(), cheque.getData());
