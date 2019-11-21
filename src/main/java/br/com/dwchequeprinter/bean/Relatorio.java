@@ -2,6 +2,9 @@ package br.com.dwchequeprinter.bean;
 
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -31,6 +34,7 @@ import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.type.OrientationEnum;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 public class Relatorio{
@@ -44,7 +48,7 @@ public class Relatorio{
 		this.response = (HttpServletResponse) this.context.getExternalContext().getResponse();
 	}
 	
-	public void imprimecheque(String nome, double valor, String cidade, String uf, String valorextenso, Date data){
+	public void imprimecheque(String nome, double valor, String cidade, String valorextenso, Date data, boolean cruzar){
 		Locale local = new Locale("pt","BR");
 		DateFormat formato = new SimpleDateFormat("MMMM",local);
 		SimpleDateFormat formato2 = new SimpleDateFormat("dd");
@@ -60,7 +64,7 @@ public class Relatorio{
 		
 		try{
 			String caminho = "";
-			caminho = Faces.getRealPath("/pages/reports/cheque/cheque");
+			caminho = Faces.getRealPath("/pages/reports/cheque/chequea4");
 		
 			JasperCompileManager.compileReportToFile(caminho+".jrxml");
 			JasperReport rp = (JasperReport) JRLoader.loadObjectFromFile(caminho+".jasper");
@@ -72,29 +76,30 @@ public class Relatorio{
 			params.put("VALOR", valorformatado);
 			params.put("VALOREXTENSO", valorextenso);
 			params.put("CIDADE", cidade);
-			params.put("UF", uf);
 			params.put("DIA", dia);
 			params.put("MES", mes.toUpperCase());
 			params.put("ANO", ano);
 			params.put("USUARIO", usuarioconectado());
+			params.put("CRUZAR", cruzar);
 			
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			JasperPrint print = JasperFillManager.fillReport(rp, params, getConexao());
 			
 			print.setOrientation(OrientationEnum.LANDSCAPE);
-			print.setPageWidth(496);
-			print.setPageHeight(212);
-			//JasperPrintManager.printPage(print, 0, true); 
-			JasperExportManager.exportReportToPdfStream(print, baos);
 			
+			JasperExportManager.exportReportToPdfStream(print, baos);
+					    		
 			response.reset();
 			response.setContentType("application/pdf");
 			response.setContentLength(baos.size());
-			response.setHeader("Content-disposition","inline; filename=relatorio.pdf");
+			response.setHeader("Content-disposition","attachment; filename=relatorio.pdf");
 			response.getOutputStream().write(baos.toByteArray());
 			response.getOutputStream().flush();
 			response.getOutputStream().close();
 			context.responseComplete();
+			
+			
+			
 			closeConnection();
 			
 		}catch(Exception e){

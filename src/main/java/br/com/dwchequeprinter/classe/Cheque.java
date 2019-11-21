@@ -11,12 +11,20 @@ public class Cheque implements Serializable {
 	private String cidade;
 	private String uf;
 	private Date data;
+	private boolean cruzar;
 	
 		
 	public Cheque() {
 		super();
 	}
+	
+	public boolean isCruzar() {
+		return cruzar;
+	}
 
+	public void setCruzar(boolean cruzar) {
+		this.cruzar = cruzar;
+	}
 
 	public Date getData() {
 		return data;

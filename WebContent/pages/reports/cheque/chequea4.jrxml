@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cheque" pageWidth="496" pageHeight="212" orientation="Landscape" columnWidth="496" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3104f81e-adc7-4cbc-9d54-dfaef23d02ef">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="chequea4" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3104f81e-adc7-4cbc-9d54-dfaef23d02ef">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="net.sf.jasperreports.print.create.bookmarks" value="true"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
-	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
-	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
 	<property name="com.jaspersoft.studio.report.description" value=""/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<parameter name="UF" class="java.lang.String"/>
 	<parameter name="CIDADE" class="java.lang.String"/>
 	<parameter name="VALOR" class="java.lang.String"/>
@@ -18,6 +18,7 @@
 	<parameter name="DIA" class="java.lang.String"/>
 	<parameter name="MES" class="java.lang.String"/>
 	<parameter name="ANO" class="java.lang.String"/>
+	<parameter name="CRUZAR" class="java.lang.Boolean"/>
 	<queryString>
 		<![CDATA[SELECT * FROM DWBI_LOGIN
 WHERE USUARIO =  $P{USUARIO}]]>
@@ -38,30 +39,36 @@ WHERE USUARIO =  $P{USUARIO}]]>
 		<property name="com.jaspersoft.studio.field.label" value="TIPO"/>
 	</field>
 	<detail>
-		<band height="212" splitType="Stretch">
+		<band height="595" splitType="Stretch">
+			<rectangle>
+				<reportElement x="335" y="191" width="496" height="212" uuid="6caeae2d-eed0-46b1-ba93-65935499db77"/>
+				<graphicElement>
+					<pen lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
 			<textField>
-				<reportElement x="370" y="13" width="110" height="10" uuid="6cffd179-e3e5-4823-87eb-4f6f3197e895"/>
+				<reportElement x="703" y="205" width="110" height="10" uuid="6cffd179-e3e5-4823-87eb-4f6f3197e895"/>
 				<textElement>
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{VALOR}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="16" y="72" width="300" height="10" uuid="03a401dc-96b9-4f24-afcf-baa881555192"/>
+				<reportElement x="349" y="264" width="300" height="10" uuid="03a401dc-96b9-4f24-afcf-baa881555192"/>
 				<textElement>
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{NOME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="125" y="88" width="172" height="10" uuid="234b9720-da94-4eed-b880-af7984e89e7c"/>
+				<reportElement x="458" y="280" width="172" height="10" uuid="234b9720-da94-4eed-b880-af7984e89e7c"/>
 				<textElement textAlignment="Right">
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{CIDADE}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="10" y="35" width="470" height="10" uuid="0206a1ed-4756-4373-b06c-3b110df4b76d"/>
+				<reportElement x="343" y="227" width="470" height="10" uuid="0206a1ed-4756-4373-b06c-3b110df4b76d"/>
 				<textElement rotation="None">
 					<font fontName="Arial" size="8"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="22.0"/>
@@ -69,26 +76,36 @@ WHERE USUARIO =  $P{USUARIO}]]>
 				<textFieldExpression><![CDATA[$P{VALOREXTENSO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="339" y="88" width="90" height="10" uuid="1d663de2-ffb4-4f19-99ee-5955ce38b5a1"/>
+				<reportElement x="672" y="280" width="90" height="10" uuid="1d663de2-ffb4-4f19-99ee-5955ce38b5a1"/>
 				<textElement textAlignment="Left">
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{MES}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="303" y="89" width="20" height="10" uuid="fc363b14-27a2-46c8-850b-64c330053011"/>
+				<reportElement x="636" y="281" width="20" height="10" uuid="fc363b14-27a2-46c8-850b-64c330053011"/>
 				<textElement textAlignment="Right">
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{DIA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="449" y="88" width="34" height="10" uuid="8b11e896-83ce-45f1-8e12-b184e670e507"/>
+				<reportElement x="782" y="280" width="34" height="10" uuid="8b11e896-83ce-45f1-8e12-b184e670e507"/>
 				<textElement>
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{ANO}]]></textFieldExpression>
 			</textField>
+			<line direction="BottomUp">
+				<reportElement x="340" y="199" width="147" height="122" uuid="e635e5e4-1f5c-4189-a5e3-2980b6608830">
+					<printWhenExpression><![CDATA[$P{CRUZAR} == true]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement x="340" y="198" width="109" height="90" uuid="35d13530-edf3-4fad-b8bd-fa4448c36f2b">
+					<printWhenExpression><![CDATA[$P{CRUZAR} == true]]></printWhenExpression>
+				</reportElement>
+			</line>
 		</band>
 	</detail>
 </jasperReport>

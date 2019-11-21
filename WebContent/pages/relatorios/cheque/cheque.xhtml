@@ -28,45 +28,45 @@
         Imprimir Cheque
     </ui:define>
 
-	<ui:define name="description"> 
-    </ui:define>
+	<ui:define name="description">
+	</ui:define>
 
 	<ui:define name="body">
 		<adm:breadcrumb title="Imprimir Cheque" />
 
 		<h:form id="form">
-		<div class="box box-primary">
-		<p:separator />
-			<p:panelGrid columns="2" id="paineld">
-				
-				<p:outputLabel value="Nome:" for="nome" />
-				<p:inputText id="nome" value="#{beanCheque.cheque.nome}">
-				</p:inputText>
-				
-				<p:outputLabel value="Valor:" for="valor" />
-				<p:inputText id="valor" value="#{beanCheque.cheque.valor}">
-				</p:inputText>
-				
-				<p:outputLabel value="Cidade:" for="cidade" />
-				<p:inputText id="cidade" value="#{beanCheque.cheque.cidade}">
-				</p:inputText>
-				
-				<p:outputLabel value="Uf:" for="uf" />
-				<p:inputText id="uf" value="#{beanCheque.cheque.uf}">
-				</p:inputText>
-				
-				<p:outputLabel value="Data:  " for="data" />
+			<div class="box box-primary">
+				<p:separator />
+				<p:panelGrid columns="2" id="paineld">
+
+					<p:outputLabel value="Nome:" for="nome" />
+					<p:inputText id="nome" value="#{beanCheque.cheque.nome}">
+					</p:inputText>
+
+					<p:outputLabel value="Valor:" for="valor" />
+					<p:inputText id="valor" value="#{beanCheque.cheque.valor}">
+					</p:inputText>
+
+					<p:outputLabel value="Cidade:" for="cidade" />
+					<p:inputText id="cidade" value="#{beanCheque.cheque.cidade}">
+					</p:inputText>
+
+					<p:outputLabel value="Data:  " for="data" />
 					<p:calendar locale="pt_BR" id="data"
-						value="#{beanCheque.cheque.data}" pattern="dd/MM/yyyy"
-						mask="true" required="true" readonlyInput="true">
+						value="#{beanCheque.cheque.data}" pattern="dd/MM/yyyy" mask="true"
+						required="true" readonlyInput="true">
 					</p:calendar>
-				
-			</p:panelGrid>
-			
+
+					<p:selectBooleanCheckbox value="#{beanCheque.cheque.cruzar}"
+						itemLabel="Cruzar Cheque">
+					</p:selectBooleanCheckbox>
+
+				</p:panelGrid>
+
 				<div class="box-header with-border">
-					<p:commandButton
-						actionListener="#{beanCheque.imprimecheque()}" ajax="false"
-						icon="ui-icon-print" value="Visualizar" styleClass="btn-primary" />
+					<p:commandButton actionListener="#{beanCheque.imprimecheque()}"
+						ajax="false" icon="ui-icon-print" value="Visualizar"
+						styleClass="btn-primary" />
 					<p:spacer width="5" />
 					<p:separator />
 
